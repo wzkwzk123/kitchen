@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<robot name="robot_kitchen" 
+    xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <!-- BASE -->
+    <link name ="base_link"/>
+    <!-- Import Kitchen  -->
+    <xacro:include filename="$(find robot_kitchen_description)/urdf/robot_kitchen.macro.xacro"/>
+    <!--Kitchen Position-->
+    <xacro:kitchen prefix="electrolux_" parent="base_link" model="electrolux">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </xacro:kitchen>
+</robot>
