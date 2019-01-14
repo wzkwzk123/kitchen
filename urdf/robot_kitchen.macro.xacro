@@ -41,7 +41,7 @@
         </link>
 
         <!-- Reference -->
-        <link name="${prefix}_kitchen_reference"/>
+        <link name="${prefix}kitchen_reference"/>
 
         <!-- Parent to Kitchen -->
         <joint name="${parent}to_kitchen" type="fixed">
@@ -54,7 +54,7 @@
         <!-- Kitchen to Reference -->
         <joint name="${prefix}kitchen_to_kitchen_reference" type="fixed">
             <parent link="${prefix}kitchen"/>
-            <child link="${prefix}_kitchen_reference"/>
+            <child link="${prefix}kitchen_reference"/>
             <origin xyz ="0 ${-0.13-0.207/2.} 0" rpy="0 0 0"/>
         </joint>
     </xacro:macro>
