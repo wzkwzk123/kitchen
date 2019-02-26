@@ -8,8 +8,8 @@
         <xacro:property name="kitchen_length_electrolux" value="2.44"/>
         <xacro:property name="kitchen_width_electrolux" value="1.082"/>
         <xacro:property name="kitchen_height_electrolux" value="0.89599"/>
-        <xacro:property name="kitchen_length_aurora" value="2."/>
-        <xacro:property name="kitchen_width_aurora" value="1.2"/>
+        <xacro:property name="kitchen_length_aurora" value="2.775"/>
+        <xacro:property name="kitchen_width_aurora" value="1.137"/>
         <xacro:property name="kitchen_height_aurora" value="1.1"/>
 
         <xacro:if value="${model == 'electrolux'}">
@@ -17,7 +17,7 @@
             <xacro:property name="kitchen_width" value="${kitchen_width_electrolux}"/>
             <xacro:property name="kitchen_height" value="${kitchen_height_electrolux}"/>
         </xacro:if>
-        <xacro:unless value="${model == 'aurora'}">
+        <xacro:unless value="${model == 'electrolux'}">
             <xacro:property name="kitchen_length" value="${kitchen_length_aurora}"/>
             <xacro:property name="kitchen_width" value="${kitchen_width_aurora}"/>
             <xacro:property name="kitchen_height" value="${kitchen_height_aurora}"/>
