@@ -27,7 +27,7 @@
         <link name="${prefix}kitchen">
             <visual>
                 <geometry>
-                    <mesh filename="package://robot_kitchen_description/meshes/kitchen_${model}.stl"/>
+                    <mesh filename="package://robot_kitchen_description/meshes/kitchen_${model}.dae"/>
                 </geometry>
             </visual>
             <!--
