@@ -11,6 +11,8 @@
         <xacro:property name="kitchen_length_aurora" value="2.775"/>
         <xacro:property name="kitchen_width_aurora" value="1.137"/>
         <xacro:property name="kitchen_height_aurora" value="1.1"/>
+        <xacro:property name="kitchen_mass" value="1000"/>
+
 
         <xacro:if value="${model == 'electrolux'}">
             <xacro:property name="kitchen_length" value="${kitchen_length_electrolux}"/>
@@ -23,6 +25,27 @@
             <xacro:property name="kitchen_height" value="${kitchen_height_aurora}"/>
         </xacro:unless>
 
+        <xacro:macro name="cylinder_inertial" params="radius length mass *origin">
+            <inertial>
+            <mass value="${mass}" />
+            <xacro:insert_block name="origin" />
+            <inertia ixx="${0.0833333 * mass * (3 * radius * radius + length * length)}" ixy="0.0" ixz="0.0"
+            iyy="${0.0833333 * mass * (3 * radius * radius + length * length)}" iyz="0.0"
+            izz="${0.5 * mass * radius * radius}" />
+            </inertial>
+        </xacro:macro>
+
+
+        <xacro:macro name="box_inertial" params="length width height mass">
+            <inertial>
+            <mass value="${mass}" />
+            <inertia ixx="${0.0833333 * mass * (width * width + height * height)}" ixy="0.0" ixz="0.0"
+            iyy="${0.0833333 * mass * (length * length + height * height)}" iyz="0.0"
+            izz="${0.083 * length * length + width * width}" />
+            </inertial>
+        </xacro:macro>
+        <static>true</static>
+
         <!-- Kitchen -->
         <link name="${prefix}kitchen">
             <visual>
@@ -30,18 +53,25 @@
                     <mesh filename="package://robot_kitchen_description/meshes/kitchen_${model}.dae"/>
                 </geometry>
             </visual>
-            <!--
+            
             <collision>
                 <origin xyz="${kitchen_length/2.} ${-kitchen_width/2.} ${-kitchen_height/2.}" rpy="0 0 0"/>
                 <geometry>
                     <box size="${kitchen_length} ${kitchen_width} ${kitchen_height}"/>
                 </geometry>
             </collision>
-            -->
+
+            <box_inertial length="${kitchen_length}" width="${kitchen_width}" height="${kitchen_height}" mass="${kitchen_mass}" />
         </link>
+        <gazebo reference="${prefix}kitchen">
+            <material>Gazebo/Gray</material>
+        </gazebo>
+
 
         <!-- Reference -->
         <link name="${prefix}kitchen_reference"/>
+
+
 
         <!-- Parent to Kitchen -->
         <joint name="${parent}to_kitchen" type="fixed">
